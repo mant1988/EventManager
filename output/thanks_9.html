@@ -4,11 +4,11 @@
   <title>Thank You!</title>
 </head>
 <body>
-  <h1>Thanks <%= name %></h1>
+  <h1>Thanks Shiyu</h1>
   <p>Thanks for coming to our conference.  We couldn't have done it without you!</p>
   
   <p>
-    Thanks for your phone : <%= phone %>
+    Thanks for your phone : 808-497-4000
   </p>
   
   <p>
@@ -18,12 +18,22 @@
 
   <table>
   <tr><th>Name</th><th>Website</th></tr>
-    <% legislators.each do |legislator| %>
+    
       <tr>
-        <td><%= "#{legislator.first_name} #{legislator.last_name}" %></td>
-        <td><%= "#{legislator.website}" %></td>
+        <td>Tulsi Gabbard</td>
+        <td>http://gabbard.house.gov</td>
       </tr>
-    <% end %>
+    
+      <tr>
+        <td>Brian Schatz</td>
+        <td>http://www.schatz.senate.gov</td>
+      </tr>
+    
+      <tr>
+        <td>Mazie Hirono</td>
+        <td>http://www.hirono.senate.gov</td>
+      </tr>
+    
   </table>
 </body>
 </html>
