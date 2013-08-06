@@ -1,7 +1,6 @@
 require "csv"
-
-
-require 'sunlight/congress'
+require "sunlight/congress"
+require "erb"
 
 Sunlight::Congress.api_key = "e179a6973728c4dd3fb1204283aaccb5"
 
@@ -11,13 +10,7 @@ def clean_zipcode(zipcode)
 end
 
 def legislators_by_zipcode(zipcode)
-	legislators = Sunlight::Congress::Legislator.by_zipcode(zipcode)
-
-	legislator_names = legislators.collect do |legislator|
-		"#{legislator.first_name} #{legislator.last_name}"
-	end
-
-	legislators_string = legislator_names.join(", ")
+	Sunlight::Congress::legislators.by_zipcode(zipcode)
 end
 
 puts "EventManager Initialized!"
@@ -26,7 +19,7 @@ FILE = "event_attendees.csv"
 
 if File.exist?(FILE)
 	content = CSV.open FILE , :headers => true, :header_converters => :symbol
-        template_letter = File.read "form_letter.html"
+  template_letter = File.read "form_letter.erb"
 	content.each do |row|
 	first_name = row[:first_name]
 
@@ -34,9 +27,7 @@ if File.exist?(FILE)
 
 	legislators = legislators_by_zipcode(zipcode)
 
-	personal_letter = template_letter.gsub('FIRST_NAME', first_name)
-	personal_letter.gsub!('LEGISLATORS', legislators)
-
-       puts personal_letter
+	form_letter = erb_template.result(binding)
+	puts form_letter
 	end
 end
