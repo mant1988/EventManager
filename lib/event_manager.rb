@@ -1,9 +1,3 @@
-require "csv"
-require 'sunlight/congress'
-
-Sunlight::Congress.api_key = "e179a6973728c4dd3fb1204283aaccb5"
-
-#should declare method on above
 require 'csv'
 require 'sunlight/congress'
 require 'erb'
